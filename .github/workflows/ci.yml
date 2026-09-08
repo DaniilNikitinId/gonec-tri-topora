@@ -1,4 +1,4 @@
-name: CI
+name: CI Дозорного Гонца
 on:
   push:
     branches: ["**"]
@@ -23,3 +23,10 @@ jobs:
       with:
         name: gonec-report
         path: report.txt
+
+  deploy:
+    needs: test
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    steps:
+    - run: echo "🏰 Донесение доставлено до царской заставы (main)"
